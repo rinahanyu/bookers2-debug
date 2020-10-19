@@ -21,4 +21,16 @@ class User < ApplicationRecord
   def followed_by?(user)
     passive_relationships.find_by(following_id: user.id).present?
   end
+  
+  def self.search(how,content)
+    if how == 'match'
+      @users = User.where("name LIKE?", "#{content}")
+    elsif how == 'forward'
+      @users = User.where("name LIKE?", "#{content}%")
+    elsif how == 'backward'
+      @users = User.where("name LIKE?", "%#{content}")
+    elsif how == 'partial'
+      @users = User.where("name LIKE?", "%#{content}%")
+    end
+  end
 end
