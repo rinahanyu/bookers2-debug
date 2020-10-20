@@ -14,7 +14,7 @@
 		<h2>Book detail</h2>
 
 		<table class="table">
-				<tr>
+				<tr id="book_<%= @book.id %>">
 					<td>
 						<%= link_to user_path(@book.user) do %>
 							<%= attachment_image_tag(@book.user, :profile_image, :fill, 100, 100, fallback: "no-image-mini.jpg") %><br>
@@ -26,7 +26,7 @@
 					<td id="favorites_buttons">
 						<%= render partial: 'favorites/favorite', locals: {book: @book} %>
 					</td>
-					<td>コメント数：<%= @book.book_comments.count %></td>
+					<td class="comments-count">コメント数：<%= @book.book_comments.count %></td>
 					<% if @book.user == current_user %>
 						<td><%= link_to "Edit", edit_book_path(@book), class: "btn-sm btn-success edit_book_#{@book.id}" %></td>
 						<td><%= link_to "Destroy", book_path(@book), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_book_#{@book.id}" %></td>
