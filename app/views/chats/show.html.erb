@@ -1,0 +1,28 @@
+<div class="chats">
+  <h2><%= @user.name %>さんとのチャット</h2>
+  <div class="chat">
+    <% if @chats.present? %>
+      <% @chats.each do |c| %>
+      <table class="table-no-border">
+        <% if c.user == current_user %>
+          <tr>
+            <td class="col-xs-6"></td>
+            <td class="col-xs-6"><%= c.message %></td>
+          </tr>
+        <% else %>
+          <tr>
+            <td class="col-xs-6"><%= c.message %></td>
+            <td class="col-xs-6"></td>
+          </tr>
+        <% end %>
+      </table>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="post">
+    <%= form_with(model: @chat, local:true) do |f| %>
+      <%= f.text_field :message %>
+      <%= f.hidden_field :room_id, value: @room.id %>
+    <% end %>
+  </div>
+</div>

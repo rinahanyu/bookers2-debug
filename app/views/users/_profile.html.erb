@@ -10,7 +10,7 @@
 		<th>introduction</th>
 		<th><%= user.introduction %></th>
 	</tr>
-	
+
 	<tr>
 		<th>follows</th>
 		<th>
@@ -19,7 +19,7 @@
 			<% end %>
 		</th>
 	</tr>
-	
+
 	<tr>
 		<th>followers</th>
 		<th>
@@ -41,3 +41,4 @@
 		<%= link_to "フォローする", user_relationships_path(user.id), class: "btn btn-success", method: :post %>
 	<% end %>
 <% end %>
+

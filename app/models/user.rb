@@ -13,6 +13,9 @@ class User < ApplicationRecord
   has_many :passive_relationships, class_name: "Relationship", foreign_key: :follower_id
   has_many :followers, through: :passive_relationships, source: :following
   
+  has_many :chats, dependent: :destroy
+  has_many :user_rooms, dependent: :destroy
+  
   attachment :profile_image, destroy: false
 
   validates :name, length: {maximum: 20, minimum: 2}, uniqueness: true
