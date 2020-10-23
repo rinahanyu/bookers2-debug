@@ -16,9 +16,8 @@ set :runner_command, "rails runner"
 #   runner "MyModel.some_method"
 #   rake "some:great:rake:task"
 # end
-#
 every 1.days, at: '9:00 am' do
-  runner "ThanksMailer.notify_user"
+  runner "DailyMailer.notify_user"
 end
 
 # Learn more: http://github.com/javan/whenever
