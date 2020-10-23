@@ -1,0 +1,13 @@
+<% chats.each do |c| %>
+  <% if c.user == current_user %>
+    <tr>
+      <td width="500"></td>
+      <td class="col-xs-6"><%= c.message %></td>
+    </tr>
+  <% else %>
+    <tr>
+      <td width="500"><%= c.message %></td>
+      <td class="col-xs-6"></td>
+    </tr>
+  <% end %>
+<% end %>

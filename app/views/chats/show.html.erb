@@ -2,26 +2,14 @@
   <h2><%= @user.name %>さんとのチャット</h2>
   <div class="chat">
     <% if @chats.present? %>
-      <% @chats.each do |c| %>
-      <table class="table-no-border">
-        <% if c.user == current_user %>
-          <tr>
-            <td class="col-xs-6"></td>
-            <td class="col-xs-6"><%= c.message %></td>
-          </tr>
-        <% else %>
-          <tr>
-            <td class="col-xs-6"><%= c.message %></td>
-            <td class="col-xs-6"></td>
-          </tr>
-        <% end %>
+      <table id="js-table-message" class="table-no-border">
+        <%= render 'chats/message', chats: @chats %>
       </table>
-      <% end %>
     <% end %>
   </div>
   <div class="post">
-    <%= form_with(model: @chat, local:true) do |f| %>
-      <%= f.text_field :message %>
+    <%= form_with(model: @chat, remote: true) do |f| %>
+      <%= f.text_field :message, id:"message" %>
       <%= f.hidden_field :room_id, value: @room.id %>
     <% end %>
   </div>

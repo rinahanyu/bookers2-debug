@@ -3,9 +3,8 @@
 		<h2>User info</h2>
 		<%= render 'users/profile', user: @user %>
 		<% if @isRoom == true %>
-			<!--<p class="user-show-room"><a href="/chats/<%#= @roomId %>" class="btn btn-default">チャットへ</a>-->
-			<p><%= link_to "チャットへ", chat_path(@roomId, user_id: @user.id) %></p>
-		<% else %>
+			<p class="btn btn-default"><%= link_to "チャットへ", chat_path(@roomId, user_id: @user.id) %></p>
+		<% elsif @user != current_user %>
 			<%= form_with(model:@room, url: rooms_path, local: true) do |f| %>
 				<%= f.fields_for :userRoom do |ur| %>
 					<%= ur.hidden_field :user_id, value: @user.id %>
